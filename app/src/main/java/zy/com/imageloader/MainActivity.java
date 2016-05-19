@@ -19,6 +19,7 @@ import android.widget.ListView;
 import java.util.List;
 
 import imageloader.DiskCache;
+import imageloader.DoubleCache;
 import imageloader.ImageLoader;
 import utils.Logger;
 
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        ImageLoader.Builder builder = new ImageLoader.Builder().setCache(new DiskCache(this));
+        ImageLoader.Builder builder = new ImageLoader.Builder().setCache(new DoubleCache(this));
         ImageLoader.getInstance().init(builder);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);

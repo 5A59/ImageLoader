@@ -1,7 +1,8 @@
 package imageloader;
 
 import android.graphics.Bitmap;
-import android.util.LruCache;
+
+import cache.LruCache;
 
 /**
  * Created by zy on 16-5-18.

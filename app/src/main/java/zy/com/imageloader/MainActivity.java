@@ -21,6 +21,8 @@ import java.util.List;
 import imageloader.DiskCache;
 import imageloader.DoubleCache;
 import imageloader.ImageLoader;
+import imageloader.LoadCache;
+import imageloader.MemoryCache;
 import utils.Logger;
 
 public class MainActivity extends AppCompatActivity {
@@ -42,7 +44,8 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        ImageLoader.Builder builder = new ImageLoader.Builder().setCache(new DoubleCache(this));
+        LoadCache cache = new MemoryCache();
+        ImageLoader.Builder builder = new ImageLoader.Builder().setCache(cache);
         ImageLoader.getInstance().init(builder);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);

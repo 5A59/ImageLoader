@@ -1,4 +1,4 @@
-package imageloader;
+package imageloader.cache;
 
 import android.graphics.Bitmap;
 

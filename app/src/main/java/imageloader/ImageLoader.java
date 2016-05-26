@@ -9,7 +9,8 @@ import java.io.InputStream;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import utils.Logger;
+import imageloader.cache.LoadCache;
+import imageloader.cache.MemoryCache;
 
 /**
  * Created by zy on 16-5-18.

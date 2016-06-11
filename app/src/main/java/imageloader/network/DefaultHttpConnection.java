@@ -1,4 +1,4 @@
-package imageloader;
+package imageloader.network;
 
 import java.io.InputStream;
 import java.net.HttpURLConnection;

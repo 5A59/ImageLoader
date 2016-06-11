@@ -8,4 +8,5 @@ import android.graphics.Bitmap;
 public interface LoadCache {
     void put(String key, Bitmap bitmap);
     Bitmap get(String key);
+    boolean exists(String key);
 }

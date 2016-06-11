@@ -1,5 +1,6 @@
 package zy.com.imageloader;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -12,6 +13,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+
+import imageloader.ImageConfig;
 import imageloader.ImageLoader;
 import imageloader.cache.LoadCache;
 import imageloader.cache.MemoryCache;
@@ -36,8 +40,14 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         LoadCache cache = new MemoryCache();
-        ImageLoader.Builder builder = new ImageLoader.Builder().setCache(cache);
-        ImageLoader.getInstance().init(builder);
+        ImageLoaderOld.Builder builder = new ImageLoaderOld.Builder().setCache(cache);
+        ImageLoaderOld.getInstance().init(builder);
+
+        ImageConfig config = new ImageConfig.Builder(this).create();
+        ImageLoader.getInstance().init(config);
+
+        ImageLoaderConfiguration imageLoaderConfiguration = new ImageLoaderConfiguration.Builder(this).build();
+        com.nostra13.universalimageloader.core.ImageLoader.getInstance().init(imageLoaderConfiguration);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -74,7 +84,9 @@ public class MainActivity extends AppCompatActivity {
         public void onBindViewHolder(PicViewHolder holder, int position) {
             ImageView imageView = holder.imageView;
 //            imageView.setTag(urls[position]);
-            ImageLoader.getInstance().load(urls[position], imageView);
+//            ImageLoaderOld.getInstance().load(urls[position], imageView);
+            ImageLoader.getInstance().displayImage(urls[position], imageView);
+//            com.nostra13.universalimageloader.core.ImageLoader.getInstance().displayImage(urls[position], imageView);
         }
 
         @Override
@@ -92,6 +104,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void test() {
+
+    }
 
     public final static String[] imageThumbUrls = new String[] {
             "http://img.my.csdn.net/uploads/201407/26/1406383299_1976.jpg",

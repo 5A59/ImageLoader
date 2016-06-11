@@ -51,4 +51,8 @@ public class Utils {
         String path = context.getCacheDir().getPath();
         return new File(path + File.separator + subName);
     }
+
+    public static String hash(String data) {
+        return data;
+    }
 }

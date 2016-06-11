@@ -41,6 +41,18 @@ public class DiskCache implements LoadCache{
         return getBitmapFromFile(getHash(key));
     }
 
+    @Override
+    public boolean exists(String key) {
+        DiskLruCache.Snapshot snapshot = null;
+        try {
+            snapshot = lruCache.get(Utils.md5(key));
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return snapshot != null;
+    }
+
     public String getHash(String key) {
         return Utils.md5(key);
     }

@@ -37,4 +37,9 @@ public class MemoryCache implements LoadCache{
     public Bitmap get(String key) {
         return memoryCache.get(key);
     }
+
+    @Override
+    public boolean exists(String key) {
+        return memoryCache.get(key) != null;
+    }
 }

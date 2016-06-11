@@ -29,6 +29,11 @@ public class DoubleCache implements LoadCache{
         return getFromCache(key);
     }
 
+    @Override
+    public boolean exists(String key) {
+        return false;
+    }
+
     public void putToCache(String key, Bitmap bitmap) {
         memoryCache.put(key, bitmap);
         diskCache.put(key, bitmap);

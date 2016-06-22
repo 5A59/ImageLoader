@@ -19,6 +19,7 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 import imageloader.ImageConfig;
 import imageloader.ImageLoader;
+import imageloader.LoadOptions;
 import imageloader.cache.LoadCache;
 import imageloader.cache.MemoryCache;
 
@@ -82,9 +83,10 @@ public class MainActivity extends AppCompatActivity {
             ImageView imageView = holder.imageView;
 //            imageView.setTag(urls[position]);
 //            ImageLoaderOld.getInstance().load(urls[position], imageView);
-            ImageLoader.getInstance().displayImage(urls[position], imageView);
-            DisplayImageOptions options = new DisplayImageOptions.Builder()
-                    .showImageOnLoading(R.mipmap.ic_launcher).build();
+            LoadOptions options = new LoadOptions.Builder().setLoadRes(R.mipmap.ic_launcher).create();
+            ImageLoader.getInstance().displayImage(urls[position], imageView, options);
+//            DisplayImageOptions options = new DisplayImageOptions.Builder()
+//                    .showImageOnLoading(R.mipmap.ic_launcher).build();
 //            com.nostra13.universalimageloader.core.ImageLoader.getInstance().displayImage(urls[position], imageView, options);
 //            com.nostra13.universalimageloader.core.ImageLoader.getInstance().displayImage(urls[position], imageView);
         }

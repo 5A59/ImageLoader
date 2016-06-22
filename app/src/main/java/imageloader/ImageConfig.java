@@ -1,6 +1,7 @@
 package imageloader;
 
 import android.content.Context;
+import android.content.res.Resources;
 
 import java.util.HashMap;
 
@@ -17,6 +18,7 @@ import imageloader.thread.ThreadPool;
  * Created by zy on 16-6-10.
  */
 public class ImageConfig {
+    private Resources resources;
     private Decoder decoder;
     private Displayer displayer;
     private Loader loader;
@@ -25,6 +27,10 @@ public class ImageConfig {
     private MemoryCache memoryCache;
     private DiskCache diskCache;
     private Hasher hasher;
+
+    public Resources getResources() {
+        return resources;
+    }
 
     public Decoder getDecoder() {
         return decoder;
@@ -120,6 +126,8 @@ public class ImageConfig {
         }
 
         private void apply(ImageConfig config) {
+            config.resources = context.getResources();
+
             if (decoder != null){
                 config.decoder = decoder;
             }else {

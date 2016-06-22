@@ -2,6 +2,7 @@ package imageloader.viewpack;
 
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.os.Looper;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -25,7 +26,11 @@ public class ImageViewPack implements ViewPack{
 
     @Override
     public void setBitmap(Bitmap bitmap) {
-        imageView.setImageBitmap(bitmap);
+        if (Looper.myLooper() == Looper.getMainLooper()){
+            imageView.setImageBitmap(bitmap);
+        }else {
+            Logger.d("not in lopper so can not show ");
+        }
     }
 
     @Override

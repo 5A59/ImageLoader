@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 import imageloader.ImageConfig;
@@ -50,11 +52,6 @@ public class MainActivity extends AppCompatActivity {
         com.nostra13.universalimageloader.core.ImageLoader.getInstance().init(imageLoaderConfiguration);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-            }
-        });
 
         recyclerView = (RecyclerView) this.findViewById(R.id.recycle);
         StaggeredGridLayoutManager staggeredGridLayoutManager
@@ -86,6 +83,9 @@ public class MainActivity extends AppCompatActivity {
 //            imageView.setTag(urls[position]);
 //            ImageLoaderOld.getInstance().load(urls[position], imageView);
             ImageLoader.getInstance().displayImage(urls[position], imageView);
+            DisplayImageOptions options = new DisplayImageOptions.Builder()
+                    .showImageOnLoading(R.mipmap.ic_launcher).build();
+//            com.nostra13.universalimageloader.core.ImageLoader.getInstance().displayImage(urls[position], imageView, options);
 //            com.nostra13.universalimageloader.core.ImageLoader.getInstance().displayImage(urls[position], imageView);
         }
 

@@ -59,9 +59,9 @@ public class ImageLoaderOld {
             downloadImage(url, imageView);
         }
 
-        if (url.equals(imageView.getTag())){
-            imageView.setImageBitmap(bitmap);
-        }
+//        if (url.equals(imageView.getTag())){
+//            imageView.setImageBitmap(bitmap);
+//        }
     }
 
     public void downloadImage(final String url, final ImageView imageView) {
@@ -75,6 +75,10 @@ public class ImageLoaderOld {
                     imageView.setImageBitmap(bitmap);
                 }
                 loadCache.put(Utils.keyHash(url), bitmap);
+
+                if (url.equals(imageView.getTag())){
+                    imageView.setImageBitmap(bitmap);
+                }
 
                 try {
                     inputStream.close();

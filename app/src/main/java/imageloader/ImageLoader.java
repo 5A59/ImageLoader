@@ -1,11 +1,14 @@
 package imageloader;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Handler;
 import android.widget.ImageView;
 
 import imageloader.viewpack.ImageViewPack;
 import imageloader.viewpack.ViewPack;
 import utils.Utils;
+import zy.com.imageloader.R;
 
 /**
  * Created by zy on 16-5-18.
@@ -15,6 +18,7 @@ public class ImageLoader {
 
     private ImageConfig config;
     private ImageEngine engine;
+    private Handler handler;
 
     public static ImageLoader getInstance() {
         return ourInstance;
@@ -26,6 +30,7 @@ public class ImageLoader {
     public void init(ImageConfig config) {
         this.config = config;
         engine = new ImageEngine(config);
+        handler = new Handler();
     }
 
     public void displayImage(String url, ViewPack viewPack) {
@@ -35,7 +40,11 @@ public class ImageLoader {
             new DisplayTask(config, new TaskInfo(url, bitmap, viewPack, null)).run();
             return ;
         }
-        LoadAndDisplayTask loadAndDisplayTask = new LoadAndDisplayTask(config, new TaskInfo(url, bitmap, viewPack, null));
+        viewPack.setBitmap(BitmapFactory.decodeResource(config.getResources(), R.mipmap.ic_launcher));
+//        ImageView imageView = (ImageView) viewPack.getView();
+//        imageView.setImageResource(R.mipmap.ic_launcher);
+        LoadAndDisplayTask loadAndDisplayTask = new LoadAndDisplayTask(config,
+                new TaskInfo(url, bitmap, viewPack, null), handler);
         engine.submit(loadAndDisplayTask);
     }
 

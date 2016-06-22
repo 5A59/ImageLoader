@@ -20,8 +20,21 @@ public class DisplayTask implements Runnable{
 
     @Override
     public void run() {
+        String tag = objToString(info.tag);
+        String vTag = objToString(info.viewPack.getView().getTag());
+        if (tag != null && !tag.equals(vTag)){
+            return ;
+        }
+
         if (info.bitmap != null){
             config.getDisplayer().display(info.bitmap, info.viewPack);
         }
+    }
+
+    private String objToString(Object object) {
+        if (object instanceof String){
+            return (String) object;
+        }
+        return null;
     }
 }

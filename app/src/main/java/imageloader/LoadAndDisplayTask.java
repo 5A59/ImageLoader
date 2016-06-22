@@ -1,5 +1,6 @@
 package imageloader;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Handler;
@@ -42,11 +43,12 @@ public class LoadAndDisplayTask implements Runnable {
             return ;
         }
 
+        setTag(info);
+
         bitmap = config.getDiskCache().get(config.getHasher().hash(info.url));
         if (bitmap != null){
             info.bitmap = bitmap;
             DisplayTask displayTask = new DisplayTask(config, info);
-//            displayTask.run();
             handler.post(displayTask);
             config.getMemoryCache().put(config.getHasher().hash(info.url), bitmap);
             return ;
@@ -64,7 +66,12 @@ public class LoadAndDisplayTask implements Runnable {
         config.getMemoryCache().put(config.getHasher().hash(info.url), bitmap);
 
         DisplayTask displayTask = new DisplayTask(config, info);
-//        displayTask.run();
         handler.post(displayTask);
+    }
+
+    private void setTag(TaskInfo info) {
+        View v = info.viewPack.getView();
+        v.setTag(info.url);
+        info.tag = info.url;
     }
 }

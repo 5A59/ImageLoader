@@ -52,8 +52,6 @@ public class MainActivity extends AppCompatActivity {
         ImageLoaderConfiguration imageLoaderConfiguration = new ImageLoaderConfiguration.Builder(this).build();
         com.nostra13.universalimageloader.core.ImageLoader.getInstance().init(imageLoaderConfiguration);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-
         recyclerView = (RecyclerView) this.findViewById(R.id.recycle);
         StaggeredGridLayoutManager staggeredGridLayoutManager
                 = new StaggeredGridLayoutManager(COL, StaggeredGridLayoutManager.VERTICAL);

@@ -4,8 +4,8 @@ import android.content.Context;
 
 import imageloader.Hasher.DefaultHasher;
 import imageloader.Hasher.Hasher;
-import imageloader.cache.DiskCache;
-import imageloader.cache.MemoryCache;
+import imageloader.cache.LruDiskCache;
+import imageloader.cache.LruMemoryCache;
 import imageloader.decoder.Decoder;
 import imageloader.decoder.DefaultDecoder;
 import imageloader.displayer.DefaultDisplayer;
@@ -41,12 +41,12 @@ public class ImageConfigFactory {
         return new DefaultThreadPool();
     }
 
-    public static MemoryCache getDefaultMemoryCache() {
-        return new MemoryCache();
+    public static LruMemoryCache getDefaultMemoryCache() {
+        return new LruMemoryCache();
     }
 
-    public static DiskCache getDefaultDiskCache(Context context) {
-        return new DiskCache(context);
+    public static LruDiskCache getDefaultDiskCache(Context context) {
+        return new LruDiskCache(context);
     }
 
     public static Hasher getDefaultHasher() {

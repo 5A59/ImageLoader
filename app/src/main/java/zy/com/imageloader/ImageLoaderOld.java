@@ -10,7 +10,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import imageloader.cache.LoadCache;
-import imageloader.cache.MemoryCache;
+import imageloader.cache.LruMemoryCache;
 import imageloader.network.DefaultHttpConnection;
 import imageloader.network.HttpConnection;
 
@@ -32,7 +32,7 @@ public class ImageLoaderOld {
     }
 
     private ImageLoaderOld() {
-        loadCache = new MemoryCache();
+        loadCache = new LruMemoryCache();
         executorService = Executors.newFixedThreadPool(THREAD_NUM);
         connection = new DefaultHttpConnection();
     }

@@ -1,4 +1,4 @@
-package cache;
+package imageloader.cache;
 
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -10,13 +10,13 @@ import java.util.Map;
  * 看了系统的LruCache源码之后 自己写一个
  *
  */
-public class LruCache<K, V> {
+public class MyLruMemoryCache<K, V> {
 
     private LinkedHashMap<K, V> linkedHashMap;
     private int size;
     private int maxSize;
 
-    public LruCache(int maxSize) {
+    public MyLruMemoryCache(int maxSize) {
         this.maxSize = maxSize;
         size = 0;
         linkedHashMap = new LinkedHashMap<>(0, 0.75f, true);

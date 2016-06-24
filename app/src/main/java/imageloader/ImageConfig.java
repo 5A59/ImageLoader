@@ -3,10 +3,10 @@ package imageloader;
 import android.content.Context;
 import android.content.res.Resources;
 
-import java.util.HashMap;
-
 import imageloader.Hasher.Hasher;
 import imageloader.cache.DiskCache;
+import imageloader.cache.LruDiskCache;
+import imageloader.cache.LruMemoryCache;
 import imageloader.cache.MemoryCache;
 import imageloader.decoder.Decoder;
 import imageloader.displayer.Displayer;
@@ -109,8 +109,8 @@ public class ImageConfig {
             return this;
         }
 
-        public Builder setDiskCache(DiskCache diskCache) {
-            this.diskCache = diskCache;
+        public Builder setDiskCache(DiskCache lruDiskCache) {
+            this.diskCache = lruDiskCache;
             return this;
         }
 

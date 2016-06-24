@@ -1,10 +1,7 @@
 package zy.com.imageloader;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -14,14 +11,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 import imageloader.ImageConfig;
 import imageloader.ImageLoader;
 import imageloader.LoadOptions;
 import imageloader.cache.LoadCache;
-import imageloader.cache.MemoryCache;
+import imageloader.cache.LruMemoryCache;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -42,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        LoadCache cache = new MemoryCache();
+        LoadCache cache = new LruMemoryCache();
         ImageLoaderOld.Builder builder = new ImageLoaderOld.Builder().setCache(cache);
         ImageLoaderOld.getInstance().init(builder);
 

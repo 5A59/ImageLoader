@@ -8,15 +8,15 @@ import android.graphics.Bitmap;
  */
 public class DoubleCache implements LoadCache{
 
-    private MemoryCache memoryCache;
-    private DiskCache diskCache;
+    private LruMemoryCache lruMemoryCache;
+    private LruDiskCache lruDiskCache;
 
     private Context context;
 
     public DoubleCache(Context context) {
         this.context = context;
-        memoryCache = new MemoryCache();
-        diskCache = new DiskCache(context);
+        lruMemoryCache = new LruMemoryCache();
+        lruDiskCache = new LruDiskCache(context);
     }
 
     @Override
@@ -35,14 +35,14 @@ public class DoubleCache implements LoadCache{
     }
 
     public void putToCache(String key, Bitmap bitmap) {
-        memoryCache.put(key, bitmap);
-        diskCache.put(key, bitmap);
+        lruMemoryCache.put(key, bitmap);
+        lruDiskCache.put(key, bitmap);
     }
 
     public Bitmap getFromCache(String key) {
         Bitmap bitmap = null;
-        if ((bitmap = memoryCache.get(key)) == null){
-            bitmap = diskCache.get(key);
+        if ((bitmap = lruMemoryCache.get(key)) == null){
+            bitmap = lruDiskCache.get(key);
         }
         return bitmap;
     }

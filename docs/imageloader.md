@@ -1,17 +1,16 @@
-# ImageLoader 
-
-阅读 Android-UIL 之后根据其结构重写的 ImageLoader
-
-#### 效果如下
-![imageLoader](docs/imageLoader.gif)
-
-
 ## 打造自己的Android-Universal-Image-Loader
+
+最近阅读了Android-Universal-Image-Loader的源码，又正在学习设计模式，就写一个ImageLoader练练手。
+
+大概分为以下几个步骤吧，
+* 简要介绍一下Android-Universal-Image-Loader源码
+* 在阅读源码的基础上搭建我们的ImageLoader架构，其中穿插一些自己对设计模式的理解
+* 编码实现
 
 #### 1. 简要介绍一下Android-Universal-Image-Loader的实现。
 网上有很多关于Android-Universal-Image-Loader源码解析，这里只简要介绍一下。
 Android-UIL中最主要的函数就是Imageloader.displayImage();下面流程图显示了整个调用流程
-![image](./docs/imageloader.png)
+![image](./imageloader.png)
 Android-UIL中主要有几个重要的类：
 * ImageLoader
   图片加载等主要调用的类，使用了单例。
@@ -110,7 +109,7 @@ Android-UIL中主要有几个重要的类：
 
 #### 3. 设计整体框架
 项目目录如下：
-![image](./docs/loader_dir.png)
+![image](./loader_dir.png)
 
 下面是各个类的一些主要成员变量和成员函数
 * ImageLoader
